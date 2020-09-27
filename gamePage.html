@@ -22,11 +22,12 @@
                     <p>看看您能不能把垃圾扔进指定的垃圾桶</p>
                     <p>拖动垃圾 放入正确垃圾桶</p>
                 </div>
-                <div class="game-middle">
-                    <img style="border: 1px solid red;" src="img/垃圾_slices/图层 31.png" alt=""
-                        class="animated slideInDown inDownSpeed" id="img" draggable="true">
+                <div class="game-middle" id="box">
+                    <!-- <img style="border: 1px solid red;" src="img/垃圾_slices/图层 31.png" alt=""
+                        class="animated slideInDown inDownSpeed" id="img" draggable="true"> -->
+                    <img style="border: 1px solid red;" src="img/垃圾_slices/图层 31.png" alt="" id="img" draggable="true">
                     <div class=" game-bottom">
-                        <img src="img/red.png" alt="" id="box">
+                        <img src="img/red.png" alt="" id="box1">
                         <img src="img/brown.png" alt="">
                         <img src="img/blue.png" alt="">
                         <img src="img/gray.png" alt="">
@@ -40,57 +41,53 @@
 <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="js/garbageGame.js"></script> -->
 <script type="text/javascript">
-    window.onload = function () {
-        function start(ev) {
-            ev.dataTransfer.setData("Text", ev.target.id); //设置数据类型为（“Text”）和ID 
-            console.log('1111')
+    var box = document.getElementById('box')
+    var box2 = document.getElementById('box2')
+    var img = document.getElementById('img')
+    var startX, startY;
+    var disX, diY;
+    var x, y
+    var box2Area; //box2范围
+
+    img.addEventListener('touchstart', touchStart, false)
+    img.addEventListener('touchmove', touchMove, false)
+    img.addEventListener('touchend', touchEnd, false)
+
+    //获取距离盒子的距离
+    function touchStart(e) {
+        startX = e.changedTouches[0].pageX - img.offsetLeft;
+        startY = e.changedTouches[0].pageY - img.offsetTop;
+    }
+
+    function touchMove(e) {
+        x = e.changedTouches[0].pageX - startX
+        y = e.changedTouches[0].pageY - startY;
+        //confined area (限制范围)
+        if (x < 0) {
+            x = 0;
+        } else if (x > box.offsetWidth - img.offsetWidth) {
+            x = box.offsetWidth - img.offsetWidth
+        }
+        if (y < 0) {
+            y = 0;
+        } else if (y > box.offsetHeight - img.offsetHeight) {
+            y = box.offsetHeight - img.offsetHeight
+        }
+        img.style.top = y + 'px'
+        img.style.left = x + 'px'
+    }
+
+    function touchEnd(e) {
+        if (x > box2.offsetLeft && x < box2.offsetLeft + box2.offsetWidth &&
+            y > box2.offsetTop && y < box2.offsetHeight + box2.offsetTop) {
+            img.style.cssText = ""
+            img.parentNode.removeChild(img)
+            box2.appendChild(img)
+        } else {
+            img.style.top = 0;
+            img.style.left = 0;
         }
 
-        function stop(ev) {
-            ev.preventDefault(); //阻止元素发生默认行为 
-            var id = ev.dataTransfer.getData("Text"); //获取数据类型对应的ID         
-            ev.target.appendChild(document.getElementById(id));
-            console.log('222')
-        }
-
-        function over(ev) {
-            ev.preventDefault();
-            console.log('333')
-        }
-        var oBox = document.getElementById('box');
-        var oImg = document.getElementById('img');
-        oImg.addEventListener('touchstart', function (e) {
-            startX = e.targetTouches[0].pageX - this.offsetLeft;
-            startY = e.targetTouches[0].pageY - this.offsetTop;
-
-            var windWidth = e.targetTouches[0].target.clientWidth;
-            var parentWidth = e.targetTouches[0].target.offsetParent.clientWidth;
-            console.log(windWidth, 'windWidth')
-            console.log(parentWidth, 'startY')
-        })
-        oImg.addEventListener('touchmove', function (e) {
-            var leftX = e.targetTouches[0].pageX - startX;
-            var topY = e.targetTouches[0].pageX - startY;
-            if (leftX = 0) {
-                leftX = 0;
-
-            }
-
-            this.style.left = leftX + 'px';
-            this.style.top = topY + 100 + 'px';
-        })
-        oImg.addEventListener('touchend', function (e) {
-            console.log('end')
-        })
-        // oImg.touchstart = function (ev) { //要拖动的元素触发本函数 
-        //     start(ev);
-        // };
-        // oBox.ondragover = function (ev) { //拖动过程中触发本函数 
-        //     over(ev);
-        // };
-        // oBox.ondrop = function (ev) { //拖动结束时触发本函数 
-        //     stop(ev);
-        // };
     }
 </script>
 

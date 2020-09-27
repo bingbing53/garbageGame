@@ -154,6 +154,7 @@
   position: absolute;
   bottom: 0;
   padding-left: 2.22222rem;
+  z-index: 998;
 }
 
 .game-bottom img {
@@ -172,10 +173,10 @@
 .game-middle #img {
   width: 47%;
   position: absolute;
-  top: 6.76329rem;
-  left: 0;
-  right: 0;
-  margin: auto;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-middle .inDownSpeed {

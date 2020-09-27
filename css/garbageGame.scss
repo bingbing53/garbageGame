@@ -167,6 +167,7 @@ $designWidth : 828; //写scss之前，必须要先定义designWidth。
     bottom: 0;
     padding-left: px2rem(115);
     // padding-bottom: px2rem(24);
+    z-index: 998;
 
     img {
         width: px2rem(230);
@@ -185,10 +186,14 @@ $designWidth : 828; //写scss之前，必须要先定义designWidth。
         width: 47%;
         // width: px2rem(383);
         position: absolute;
-        top: px2rem(350);
-        left: 0;
-        right: 0;
-        margin: auto;
+        // top: px2rem(350);
+        // left: 0;
+        // right: 0;
+        // margin: auto;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
     }
 
