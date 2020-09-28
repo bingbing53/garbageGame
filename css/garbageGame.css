@@ -1,9 +1,9 @@
 @charset "UTF-8";
 .game-start {
   width: 16rem;
-  height: 34.62802rem;
+  height: 28.44444rem;
   background-image: url(../img/startImg.png);
-  background-size: 16rem 34.62802rem;
+  background-size: 16rem 28.44444rem;
   background-repeat: no-repeat;
   padding-top: 4.86957rem;
 }
@@ -123,9 +123,9 @@
 
 .start-game {
   width: 16rem;
-  height: 34.62802rem;
+  height: 28.44444rem;
   background-image: url(../img/gameStart.png);
-  background-size: 16rem 34.62802rem;
+  background-size: 16rem 28.44444rem;
   background-repeat: no-repeat;
   padding-top: 0.77295rem;
   position: relative;
@@ -166,21 +166,29 @@
 
 .game-middle {
   text-align: center;
-  height: 30.80193rem;
+  height: 24.63768rem;
   position: relative;
 }
 
 .game-middle #img {
-  width: 47%;
+  width: 30%;
+  max-height: 20%;
   position: absolute;
-  z-index: 999;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  margin-left: 35%;
+  animation: dropdown 2s ease-in;
 }
 
-.game-middle .inDownSpeed {
-  animation-duration: 3s;
-  -webkit-animation-duration: 3s;
-  /* Safari 和 Chrome */
+@keyframes dropdown {
+  0% {
+    top: -210px;
+    transform: rotate(0);
+  }
+  100% {
+    top: 0px;
+    transform: rotate(360deg);
+  }
 }

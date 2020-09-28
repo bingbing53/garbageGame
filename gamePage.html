@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta name="hotcss" content="initial-dpr=1">
@@ -23,14 +22,13 @@
                     <p>拖动垃圾 放入正确垃圾桶</p>
                 </div>
                 <div class="game-middle" id="box">
-                    <!-- <img style="border: 1px solid red;" src="img/垃圾_slices/图层 31.png" alt=""
-                        class="animated slideInDown inDownSpeed" id="img" draggable="true"> -->
-                    <img style="border: 1px solid red;" src="img/垃圾_slices/图层 31.png" alt="" id="img" draggable="true">
+                    <!-- <img src="img/垃圾_slices/图层 30.png" alt="" id="img"> -->
+                    <img :src="garbageImgList[0].url" alt="" id="img">
                     <div class=" game-bottom">
-                        <img src="img/red.png" alt="" id="box1">
-                        <img src="img/brown.png" alt="">
-                        <img src="img/blue.png" alt="">
-                        <img src="img/gray.png" alt="">
+                        <img src="img/red.png" alt="" id="1" @click="goGarbage($event)">
+                        <img src="img/brown.png" alt="" id="2" @click="goGarbage($event)">
+                        <img src="img/blue.png" alt="" id="3" @click="goGarbage($event)">
+                        <img src="img/gray.png" alt="" id="4" @click="goGarbage($event)">
                     </div>
                 </div>
 
@@ -38,57 +36,45 @@
         </div>
     </div>
 </body>
-<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="js/garbageGame.js"></script> -->
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/0.10.0/vue.js"></script>
+<script src="js/garbageGame.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
 <script type="text/javascript">
-    var box = document.getElementById('box')
-    var box2 = document.getElementById('box2')
-    var img = document.getElementById('img')
-    var startX, startY;
-    var disX, diY;
-    var x, y
-    var box2Area; //box2范围
+    // 动画结束事件监听 
+    var oBox = document.querySelector('img');
+    oBox.addEventListener("animationstart", fnStart, false);
+    oBox.addEventListener("webkitAnimationStart", fnStart, false);
+    oBox.addEventListener("animationend", fnEnd, false);
+    oBox.addEventListener("webkitAnimationIteration", fn, false);
+    oBox.addEventListener("animationiteration", fn, false);
+    oBox.addEventListener("webkitAnimationEnd", fnEnd, false);
 
-    img.addEventListener('touchstart', touchStart, false)
-    img.addEventListener('touchmove', touchMove, false)
-    img.addEventListener('touchend', touchEnd, false)
-
-    //获取距离盒子的距离
-    function touchStart(e) {
-        startX = e.changedTouches[0].pageX - img.offsetLeft;
-        startY = e.changedTouches[0].pageY - img.offsetTop;
+    function fn() {
+        console.log("动画重复播放");
     }
 
-    function touchMove(e) {
-        x = e.changedTouches[0].pageX - startX
-        y = e.changedTouches[0].pageY - startY;
-        //confined area (限制范围)
-        if (x < 0) {
-            x = 0;
-        } else if (x > box.offsetWidth - img.offsetWidth) {
-            x = box.offsetWidth - img.offsetWidth
-        }
-        if (y < 0) {
-            y = 0;
-        } else if (y > box.offsetHeight - img.offsetHeight) {
-            y = box.offsetHeight - img.offsetHeight
-        }
-        img.style.top = y + 'px'
-        img.style.left = x + 'px'
+    function fnStart() {
+        console.log("动画开始了");
     }
 
-    function touchEnd(e) {
-        if (x > box2.offsetLeft && x < box2.offsetLeft + box2.offsetWidth &&
-            y > box2.offsetTop && y < box2.offsetHeight + box2.offsetTop) {
-            img.style.cssText = ""
-            img.parentNode.removeChild(img)
-            box2.appendChild(img)
-        } else {
-            img.style.top = 0;
-            img.style.left = 0;
-        }
-
+    function fnEnd() {
+        console.log("动画结束了");
+        oBox.style.cssText = "top:0px;left:0px;";
     }
+    // 动画队列
+    $('#1').click(function () {
+        var top = $(this).offset().top;
+        var left = $(this).offset().left;
+        $('#img').animate({
+            'top': top - $(this).height() / 2 + 'px',
+            'left': left - $(this).width() / 2 + 'px',
+            'width': '0.1%',
+            'height': '0.1%'
+        }, function () {
+            $('#img').css('display', 'none');
+            // $('#img').css('opacity', 0)
+        })
+    })
 </script>
 
 </html>
