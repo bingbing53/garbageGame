@@ -86,7 +86,7 @@ new Vue({
                 //定时器，1秒后消失
                 setTimeout(() => { 
                     this.trueDialogMsg=false
-                },1000);
+                },500);
                 if(label == 1){
                     var top = $('#1').offset().top;
                     var left = $('#1').offset().left;
@@ -166,7 +166,7 @@ new Vue({
                 this.flaseDialogMsg=true
                 setTimeout(() => { 
                     this.flaseDialogMsg=false                 
-                },1000);
+                },500);
                 if(label == 1){
                     var top = $('#1').offset().top;
                     var left = $('#1').offset().left;
@@ -239,14 +239,17 @@ new Vue({
             }
         },
     },
+    watch: {
+
+    },
     mounted() {
         var oBox = document.querySelector('img');
-    oBox.addEventListener("animationstart", this.fnStart, false);
-    oBox.addEventListener("webkitAnimationStart", this.fnStart, false);
-    oBox.addEventListener("animationend", this.fnEnd, false);
-    oBox.addEventListener("webkitAnimationIteration", this.fn, false);
-    oBox.addEventListener("animationiteration", this.fn, false);
-    oBox.addEventListener("webkitAnimationEnd", this.fnEnd, false);
+        oBox.addEventListener("animationstart", this.fnStart, false);
+        oBox.addEventListener("webkitAnimationStart", this.fnStart, false);
+        oBox.addEventListener("animationend", this.fnEnd, false);
+        oBox.addEventListener("webkitAnimationIteration", this.fn, false);
+        oBox.addEventListener("animationiteration", this.fn, false);
+        oBox.addEventListener("webkitAnimationEnd", this.fnEnd, false);
         console.log(this.garbageImgList[this.num].url)
     }
 })
