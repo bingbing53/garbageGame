@@ -239,9 +239,6 @@ new Vue({
             }
         },
     },
-    watch: {
-        // label
-    },
     mounted() {
         var oBox = document.querySelector('img');
     oBox.addEventListener("animationstart", this.fnStart, false);
