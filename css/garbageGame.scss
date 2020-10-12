@@ -167,7 +167,7 @@ $designWidth : 828; //写scss之前，必须要先定义designWidth。
     bottom: 0;
     padding-left: px2rem(115);
     // padding-bottom: px2rem(24);
-    z-index: 998;
+    z-index: 10;
 
     img {
         width: px2rem(230);
@@ -202,7 +202,7 @@ $designWidth : 828; //写scss之前，必须要先定义designWidth。
         // margin-left: clac(100%-47%)/2;
         margin-top: 80px;
         margin-left: 35%;
-        animation: dropdown 2s ease-in;
+        animation: dropdown .5s ease-in;
         // animation-name: dropdown;
         // animation-duration: 1s; //执行时间
         // animation-timing-function: ease-in; //加速进入
@@ -231,5 +231,27 @@ $designWidth : 828; //写scss之前，必须要先定义designWidth。
     100% {
         top: 0px;
         transform: rotate(360deg);
+    }
+}
+
+.true-dialog,
+.flase-dialog {
+    width: px2rem(648);
+    height: px2rem(346);
+    background-image: url(../img/dialogImg.png);
+    background-size: px2rem(648) px2rem(346);
+    background-repeat: no-repeat;
+    position: fixed;
+    top: px2rem(380);
+    left: 50%;
+    z-index: 12;
+    margin-left: px2rem(-324);
+    text-align: center;
+    padding-top: px2rem(40);
+    // display: none;
+
+    img {
+        width: px2rem(409);
+        height: px2rem(202);
     }
 }

@@ -154,7 +154,7 @@
   position: absolute;
   bottom: 0;
   padding-left: 2.22222rem;
-  z-index: 998;
+  z-index: 10;
 }
 
 .game-bottom img {
@@ -179,7 +179,7 @@
   justify-content: center;
   margin-top: 80px;
   margin-left: 35%;
-  animation: dropdown 2s ease-in;
+  animation: dropdown .5s ease-in;
 }
 
 @keyframes dropdown {
@@ -191,4 +191,26 @@
     top: 0px;
     transform: rotate(360deg);
   }
+}
+
+.true-dialog,
+.flase-dialog {
+  width: 12.52174rem;
+  height: 6.68599rem;
+  background-image: url(../img/dialogImg.png);
+  background-size: 12.52174rem 6.68599rem;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 7.343rem;
+  left: 50%;
+  z-index: 12;
+  margin-left: -6.26087rem;
+  text-align: center;
+  padding-top: 0.77295rem;
+}
+
+.true-dialog img,
+.flase-dialog img {
+  width: 7.90338rem;
+  height: 3.90338rem;
 }
